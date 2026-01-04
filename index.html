@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>春節排班抽籤 & AI修圖</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cny: {
+                red: '#D93025',
+                gold: '#F4B400',
+                dark: '#8B0000',
+              }
+            },
+            animation: {
+              'glow-burst': 'glowBurst 1s ease-out forwards',
+            },
+            keyframes: {
+              glowBurst: {
+                '0%': { boxShadow: '0 0 0 0 rgba(244, 180, 0, 0)' },
+                '20%': { boxShadow: '0 0 30px 10px rgba(244, 180, 0, 0.8)', filter: 'brightness(1.2)' },
+                '100%': { boxShadow: '0 0 0 0 rgba(244, 180, 0, 0)', filter: 'brightness(1)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+      body {
+        font-family: 'Noto Sans TC', sans-serif;
+        background-color: #fdf2f2;
+      }
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .transform-style-3d {
+        transform-style: preserve-3d;
+      }
+      .backface-hidden {
+        backface-visibility: hidden;
+      }
+      .rotate-y-180 {
+        transform: rotateY(180deg);
+      }
+
+      /* Chip Animation */
+      @keyframes flyOut {
+        0% {
+          transform: translate(-50%, -50%) scale(0.5);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(1);
+          opacity: 0;
+        }
+      }
+      
+      .chip-animate {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        pointer-events: none;
+        z-index: 9999;
+        animation: flyOut 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
